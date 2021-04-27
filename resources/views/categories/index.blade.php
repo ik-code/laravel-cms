@@ -9,6 +9,7 @@
             <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Category Name</th>
+                <th scope="col">Edit</th>
             </tr>
             </thead>
             <tbody>
@@ -16,6 +17,7 @@
             <tr>
                 <th scope="row">{{ $category->id }}</th>
                 <td>{{ $category->name }}</td>
+                <td><a class="btn btn-info btn-sm" href="{{ route('categories.edit', $category->id) }}" role="button">Edit</a></td>
             </tr>
                 @endforeach
             </tbody>
