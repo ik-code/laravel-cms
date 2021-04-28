@@ -17,12 +17,18 @@
             @foreach($posts as $post)
                 <tr>
                     <th scope="row">{{ $post->id }}</th>
-                    <th scope="row"><img src="{{ asset( 'storage/'. $post->image ) }}" width="50px"  alt="{{ $post->title }}"></th>
+                    <th scope="row"><img src="{{ asset( 'storage/'. $post->image ) }}" width="50px"
+                                         alt="{{ $post->title }}"></th>
                     <td>{{ $post->title }}</td>
-                    <td>
-                        <a class="btn btn-info btn-sm" href="{{ route('categories.edit', $post->id) }}"
+                    <td class="d-flex">
+                        <a class="btn btn-info btn-sm mr-2" href="{{ route('categories.edit', $post->id) }}"
                            role="button">Edit</a>
-                        <button class="btn btn-danger btn-sm" onclick="handleDelete({{ $post->id }})">Trash</button>
+                        <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Trash</button>
+                        </form>
+
                     </td>
                 </tr>
             @endforeach
@@ -59,8 +65,8 @@
 @section('scripts')
     <script>
         function handleDelete(id) {
-            var form  = document.getElementById('deletePostForm');
-            form.action = '/posts/'+id;
+            var form = document.getElementById('deletePostForm');
+            form.action = '/posts/' + id;
             $('#deleteModal').modal('show');
         }
     </script>
