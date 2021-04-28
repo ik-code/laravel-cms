@@ -4,28 +4,33 @@
         <a href="{{ route('categories.create') }}" type="button" class="btn btn-success btn-sm mb-3">Create Category</a>
     </div>
     <div class="card">
-        <table class="table">
-            <thead class="thead-light">
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Category Name</th>
-                <th scope="col">Edit/Delete</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($categories as $category)
+        @if($categories->count() > 0)
+            <table class="table">
+                <thead class="thead-light">
                 <tr>
-                    <th scope="row">{{ $category->id }}</th>
-                    <td>{{ $category->name }}</td>
-                    <td>
-                        <a class="btn btn-info btn-sm" href="{{ route('categories.edit', $category->id) }}"
-                           role="button">Edit</a>
-                        <button class="btn btn-danger btn-sm" onclick="handleDelete({{ $category->id }})">Delete</button>
-                    </td>
+                    <th scope="col">ID</th>
+                    <th scope="col">Category Name</th>
+                    <th scope="col">Actions</th>
                 </tr>
-            @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                @foreach($categories as $category)
+                    <tr>
+                        <th scope="row">{{ $category->id }}</th>
+                        <td>{{ $category->name }}</td>
+                        <td>
+                            <a class="btn btn-info btn-sm" href="{{ route('categories.edit', $category->id) }}"
+                               role="button">Edit</a>
+                            <button class="btn btn-danger btn-sm" onclick="handleDelete({{ $category->id }})">Delete
+                            </button>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        @else
+            <h5 class="text-center mt-2">No Categories Yet!</h5>
+        @endif
     </div>
 
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -57,8 +62,8 @@
 @section('scripts')
     <script>
         function handleDelete(id) {
-            var form  = document.getElementById('deleteCategoryForm');
-            form.action = '/categories/'+id;
+            var form = document.getElementById('deleteCategoryForm');
+            form.action = '/categories/' + id;
             $('#deleteModal').modal('show');
         }
     </script>

@@ -27,3 +27,4 @@ require __DIR__.'/auth.php';
 
 Route::resource('categories', CategoriesController::class);
 Route::resource('posts', PostsController::class);
+Route::get('trashed-posts', [PostsController::class, 'trashed'])->name('trashed-posts.index');
