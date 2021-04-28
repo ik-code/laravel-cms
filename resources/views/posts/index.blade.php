@@ -1,26 +1,28 @@
 @extends('dashboard')
 @section('content')
     <div class="d-flex justify-content-end">
-        <a href="{{ route('categories.create') }}" type="button" class="btn btn-success btn-sm mb-3">Create Category</a>
+        <a href="{{ route('posts.create') }}" type="button" class="btn btn-success btn-sm mb-3">Create Post</a>
     </div>
     <div class="card">
         <table class="table">
             <thead class="thead-light">
             <tr>
                 <th scope="col">ID</th>
-                <th scope="col">Category Name</th>
+                <th scope="col">Image</th>
+                <th scope="col">Post Title</th>
                 <th scope="col">Edit/Delete</th>
             </tr>
             </thead>
             <tbody>
-            @foreach($categories as $category)
+            @foreach($posts as $post)
                 <tr>
-                    <th scope="row">{{ $category->id }}</th>
-                    <td>{{ $category->name }}</td>
+                    <th scope="row">{{ $post->id }}</th>
+                    <th scope="row"><img src="{{ asset( 'storage/'. $post->image ) }}" width="50px"  alt="{{ $post->title }}"></th>
+                    <td>{{ $post->title }}</td>
                     <td>
-                        <a class="btn btn-info btn-sm" href="{{ route('categories.edit', $category->id) }}"
+                        <a class="btn btn-info btn-sm" href="{{ route('categories.edit', $post->id) }}"
                            role="button">Edit</a>
-                        <button class="btn btn-danger btn-sm" onclick="handleDelete({{ $category->id }})">Delete</button>
+                        <button class="btn btn-danger btn-sm" onclick="handleDelete({{ $post->id }})">Trash</button>
                     </td>
                 </tr>
             @endforeach
@@ -30,7 +32,7 @@
 
     <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <form action="" method="POST" id="deleteCategoryForm">
+            <form action="" method="POST" id="deletePostForm">
                 @csrf
                 @method('DELETE')
                 <div class="modal-content">
@@ -42,7 +44,7 @@
                     </div>
                     <div class="modal-body text-center">
                         <p class="text-center text-bold">
-                            Are you sure you want to delete this Category?
+                            Are you sure you want to delete this Post?
                         </p>
                     </div>
                     <div class="modal-footer">
@@ -57,9 +59,10 @@
 @section('scripts')
     <script>
         function handleDelete(id) {
-            var form  = document.getElementById('deleteCategoryForm');
-            form.action = '/categories/'+id;
+            var form  = document.getElementById('deletePostForm');
+            form.action = '/posts/'+id;
             $('#deleteModal').modal('show');
         }
     </script>
 @endsection
+
