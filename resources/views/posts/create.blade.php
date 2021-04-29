@@ -41,7 +41,12 @@
                     <input type="text" class="form-control datepicker" id="published_at" name="published_at" value="{{ isset($post) ? $post->published_at : '' }}">
                 </div>
                 <div class="form-group">
-                    <label for="image">Image</label>
+                    @if(isset($post) && !empty($post->image) )
+                        <img class="" src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}">
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label for="image">Choose Image</label>
                     <input type="file" class="form-control" id="image" name="image" value="{{ isset($post) ? $post->image : '' }}">
                 </div>
                 <div class="form-group d-flex justify-content-end">

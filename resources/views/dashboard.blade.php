@@ -8,7 +8,7 @@
     <div class="container mt-4">
 
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <ul class="list-group mb-2">
                     <li class="list-group-item">
                         <a href="{{ route('posts.index') }}">Posts</a>
@@ -23,7 +23,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-10">
                 @if(session()->has('success'))
                     <div class="alert alert-success" role="alert">
                        {{ session()->get('success') }}

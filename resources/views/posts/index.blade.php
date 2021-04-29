@@ -24,7 +24,7 @@
                         <td>{{ $post->title }}</td>
                         <td class="d-flex">
                             @if( ! $post->trashed() )
-                                <a class="btn btn-info btn-sm mr-2" href="{{ route('categories.edit', $post->id) }}"
+                                <a class="btn btn-info btn-sm mr-2" href="{{ route('posts.edit', $post->id) }}"
                                    role="button">Edit</a>
                             @endif
                             <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
