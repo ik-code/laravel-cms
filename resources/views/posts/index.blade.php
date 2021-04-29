@@ -5,6 +5,7 @@
     </div>
     <div class="card">
         @if($posts->count() > 0)
+            <h5 class="text-center mt-2">{{ $trashed ? 'Trashed Post List' : 'Post List' }}</h5>
             <table class="table">
                 <thead class="thead-light">
                 <tr>

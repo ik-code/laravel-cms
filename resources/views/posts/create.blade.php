@@ -1,4 +1,7 @@
 @extends('dashboard')
+@section('css')
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    @endsection
 @section('content')
     <div class="card" >
         <div class="card-header">
@@ -33,9 +36,9 @@
                     <label for="post_content">Content</label>
                     <textarea type="text" class="form-control post_content" id="post_content" name="post_content" cols="5" rows="5" >{{ isset($post) ? $post->post_content : '' }}</textarea>
                 </div>
-                <div class="form-group">
+                <div class="form-group post__datepicker">
                     <label for="published_at">Published at</label>
-                    <input type="date" class="form-control" id="published_at" name="published_at" value="{{ isset($post) ? $post->published_at : '' }}">
+                    <input type="text" class="form-control datepicker" id="published_at" name="published_at" value="{{ isset($post) ? $post->published_at : '' }}">
                 </div>
                 <div class="form-group">
                     <label for="image">Image</label>
@@ -85,5 +88,13 @@
             }
         };
         tinymce.init(editor_config);
+    </script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function(){
+            $("#published_at").datepicker({
+                dateFormat: "yy-mm-dd",
+            }).datepicker('setDate', new Date());
+        });
     </script>
 @endsection

@@ -14,7 +14,7 @@ class PostsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return view( 'posts.index' )->with( 'posts', Post::all() );
+        return view( 'posts.index' )->with( 'posts', Post::all() )->with('trashed', false);;
     }
 
     /**
@@ -113,8 +113,8 @@ class PostsController extends Controller {
      */
     public function trashed(){
 
-        $trashed = Post::withTrashed()->get();
+        $trashed = Post::onlyTrashed()->get();
 
-        return view('posts.index')->with('posts', $trashed);
+        return view('posts.index')->with('posts', $trashed)->with('trashed', true);
     }
 }
