@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Posts\CreatePostsRequest;
 use App\Http\Requests\Posts\UpdatePostRequest;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
@@ -23,7 +24,7 @@ class PostsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view( 'posts.create' );
+        return view( 'posts.create' )->with('categories', Category::all());
     }
 
     /**
@@ -43,7 +44,8 @@ class PostsController extends Controller {
             'description'  => $request->description,
             'post_content' => $request->post_content,
             'published_at' => $request->published_at,
-            'image'        => $image
+            'image'        => $image,
+            'category_id'  => $request->category_id,
         ] );
         //flash image
         session()->flash( 'success', 'Post created successfully' );
@@ -71,7 +73,7 @@ class PostsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit( Post $post ) {
-        return view( 'posts.create' )->with( 'post', $post );
+        return view( 'posts.create' )->with( 'post', $post )->with('categories', Category::all());
     }
 
     /**
@@ -84,7 +86,7 @@ class PostsController extends Controller {
      */
     public function update( UpdatePostRequest $request, Post $post ) {
 
-        $data = $request->only( [ 'title', 'description', 'post_content', 'published_at' ] );
+        $data = $request->only( [ 'title', 'description', 'post_content', 'published_at', 'category_id' ] );
 
         //check if image uploaded
         if ( $request->hasFile( 'image' ) ) {
@@ -99,10 +101,10 @@ class PostsController extends Controller {
         //update attributes
         $post->update( $data );
         //flash image
-        session()->flash( 'success', 'Post udated successfully' );
+        session()->flash( 'success', 'Post updated successfully' );
 
         //redirect user
-        return view( 'posts.create' )->with( 'post', $post );
+        return view( 'posts.create' )->with( 'post', $post )->with('categories', Category::all());
     }
 
     /**
@@ -124,7 +126,7 @@ class PostsController extends Controller {
             $post->delete();
             session()->flash( 'success', 'Post trashed successfully' );
         }
-        
+
         return redirect( route( 'posts.index' ) );
     }
 

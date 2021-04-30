@@ -10,6 +10,7 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Category Name</th>
+                    <th scope="col">Posts Count</th>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
@@ -18,6 +19,7 @@
                     <tr>
                         <th scope="row">{{ $category->id }}</th>
                         <td>{{ $category->name }}</td>
+                        <td>{{ $category->posts->count() }}</td>
                         <td>
                             <a class="btn btn-info btn-sm" href="{{ route('categories.edit', $category->id) }}"
                                role="button">Edit</a>

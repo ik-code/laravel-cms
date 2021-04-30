@@ -49,6 +49,14 @@
                     <label for="image">Choose Image</label>
                     <input type="file" class="form-control" id="image" name="image" value="{{ isset($post) ? $post->image : '' }}">
                 </div>
+                <div class="form-group">
+                    <label for="category_id">Choose Category</label>
+                    <select class="form-control" id="category_id" name="category_id" >
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}" {{ (isset($post) && $post->category_id==$category->id) ? 'selected=selected' : '' }} >{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <div class="form-group d-flex justify-content-end">
                     <button type="sumbit" class="btn btn-success btn-sm">
                         {{ isset($post) ? 'Update Post' : 'Add Post' }}

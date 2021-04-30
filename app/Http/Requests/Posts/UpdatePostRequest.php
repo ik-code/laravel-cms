@@ -23,7 +23,8 @@ class UpdatePostRequest extends FormRequest {
         return [
             'title'        => 'required',
             'description'  => 'required',
-            'post_content' => 'required'
+            'post_content' => 'required',
+            'category_id' => 'required',
         ];
     }
 }

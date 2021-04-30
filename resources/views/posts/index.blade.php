@@ -12,6 +12,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Image</th>
                     <th scope="col">Post Title</th>
+                    <th scope="col">Category</th>
                     <th scope="col">Actions</th>
                 </tr>
                 </thead>
@@ -22,6 +23,11 @@
                         <th scope="row"><img src="{{ asset( 'storage/'. $post->image ) }}" width="50px"
                                              alt="{{ $post->title }}"></th>
                         <td>{{ $post->title }}</td>
+                        <td>
+                            <a href="{{ route('categories.edit', $post->category->id) }}" >
+                                {{ $post->category->name }}
+                            </a>
+                        </td>
                         <td class="d-flex">
                             @if( ! $post->trashed() )
                                 <a class="btn btn-info btn-sm mr-2" href="{{ route('posts.edit', $post->id) }}"
@@ -30,14 +36,14 @@
                                 <form action="{{ route('restore-posts', $post->id) }}" method="POST">
                                     @csrf
                                     @method('PUT')
-                                <button type="submit" class="btn btn-info btn-sm mr-2">Restore</button>
+                                <button type="submit" class="btn btn-warning btn-sm mr-2">Restore</button>
                                 </form>
                             @endif
                             <form action="{{ route('posts.destroy', $post->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"
-                                        class="btn btn-danger btn-sm">{{ $post->trashed() ? 'Delete' : 'Trash' }}</button>
+                                        class="btn {{ $post->trashed() ? 'btn-danger' : 'btn-warning' }} btn-sm">{{ $post->trashed() ? 'Delete' : 'Trash' }}</button>
                             </form>
 
                         </td>

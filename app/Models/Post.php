@@ -13,7 +13,7 @@ class Post extends Model
     use SoftDeletes;
 
     protected $fillable = [
-      'title', 'description', 'post_content', 'published_at', 'image'
+      'title', 'description', 'post_content', 'published_at', 'image', 'category_id'
     ];
 
     /**
@@ -21,5 +21,15 @@ class Post extends Model
      */
     public function deleteImage(){
         Storage::delete($this->image);
+    }
+
+    /**
+     * Relationships One To Many
+     * Get the posts for the category.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category(){
+        return $this->belongsTo(Category::class);
     }
 }

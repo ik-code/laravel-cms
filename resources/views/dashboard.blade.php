@@ -8,22 +8,22 @@
     <div class="container mt-4">
 
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <ul class="list-group mb-2">
                     <li class="list-group-item">
-                        <a href="{{ route('posts.index') }}">Posts</a>
+                        <a href="{{ route('posts.index') }}">Posts({{ count(\App\Models\Post::all()) }})</a>
                     </li>
                     <li class="list-group-item">
-                        <a href="{{ route('categories.index') }}">Categories</a>
+                        <a href="{{ route('categories.index') }}">Categories({{ count(\App\Models\Category::all()) }})</a>
                     </li>
                 </ul>
                 <ul class="list-group mb-2">
                     <li class="list-group-item">
-                        <a href="{{ route('trashed-posts.index') }}">Trashed Posts</a>
+                        <a href="{{ route('trashed-posts.index') }}">Trashed Posts({{ count(\App\Models\Post::onlyTrashed()->get()) }})</a>
                     </li>
                 </ul>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-9">
                 @if(session()->has('success'))
                     <div class="alert alert-success" role="alert">
                        {{ session()->get('success') }}
