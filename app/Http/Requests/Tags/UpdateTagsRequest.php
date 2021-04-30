@@ -1,16 +1,18 @@
 <?php
 
-namespace App\Http\Requests\Categories;
+namespace App\Http\Requests\Tags;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCategoriesRequest extends FormRequest {
+class UpdateTagsRequest extends FormRequest
+{
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize() {
+    public function authorize()
+    {
         return true;
     }
 
@@ -19,9 +21,10 @@ class UpdateCategoriesRequest extends FormRequest {
      *
      * @return array
      */
-    public function rules() {
+    public function rules()
+    {
         return [
-            'name' => 'required|unique:categories'
+            'name' => 'required|unique:tags'
         ];
     }
 }

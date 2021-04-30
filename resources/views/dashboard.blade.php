@@ -14,6 +14,9 @@
                         <a href="{{ route('posts.index') }}">Posts({{ count(\App\Models\Post::all()) }})</a>
                     </li>
                     <li class="list-group-item">
+                        <a href="{{ route('tags.index') }}">Tags({{ count(\App\Models\Tag::all()) }})</a>
+                    </li>
+                    <li class="list-group-item">
                         <a href="{{ route('categories.index') }}">Categories({{ count(\App\Models\Category::all()) }})</a>
                     </li>
                 </ul>
@@ -24,16 +27,9 @@
                 </ul>
             </div>
             <div class="col-md-9">
-                @if(session()->has('success'))
-                    <div class="alert alert-success" role="alert">
-                       {{ session()->get('success') }}
-                    </div>
-                @endif
-                    @if(session()->has('error'))
-                        <div class="alert alert-danger" role="alert">
-                            {{ session()->get('error') }}
-                        </div>
-                    @endif
+                @include('partials.session_success')
+                @include('partials.session_error')
+                @include('partials.errors')
                 <div class="card">
                     <div class="card-body">
                         <h6 class="text-center">You're logged in!</h6>

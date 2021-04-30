@@ -8,17 +8,6 @@
             {{ isset($post) ? 'Edit Post' : 'Create Post' }}
         </div>
         <div class="card-body">
-            @if($errors->any())
-                <div class="alert alert-danger" role="alert">
-                    <ul class="list-group">
-                        @foreach($errors->all() as $error)
-                            <li class="list-group-item list-group-item-danger">
-                                {{ $error }}
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <form method="POST" action="{{ isset($post) ? route('posts.update', $post->id)  : route('posts.store') }}" enctype="multipart/form-data">
                 @csrf
                 @if(isset($post))
