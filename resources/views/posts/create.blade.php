@@ -46,6 +46,23 @@
                         @endforeach
                     </select>
                 </div>
+                @if($tags->count() > 0)
+                    <div class="form-group">
+                        <label for="tags">Tags</label>
+                        <select name="tags[]" id="tags" class="form-control" multiple>
+                            @foreach($tags as $tag)
+                                <option value="{{ $tag->id }}"
+                                        @if(isset($post))
+                                        @if($post->hasTag($tag->id))
+                                        selected="selected"
+                                    @endif
+                                    @endif
+                                >{{ $tag->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @endif
+
                 <div class="form-group d-flex justify-content-end">
                     <button type="sumbit" class="btn btn-success btn-sm">
                         {{ isset($post) ? 'Update Post' : 'Add Post' }}

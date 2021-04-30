@@ -32,4 +32,25 @@ class Post extends Model
     public function category(){
         return $this->belongsTo(Category::class);
     }
+
+    /**
+     * Relationships Many To Many
+     * Get the posts for the tags
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function tags() {
+        return $this->belongsToMany( Tag::class );
+    }
+
+    /**
+     * checks if post has tags
+     *
+     * @param $tag_id
+     *
+     * @return bool
+     */
+    public function  hasTag($tag_id){
+        return in_array($tag_id, $this->tags->pluck('id')->toArray());
+    }
 }

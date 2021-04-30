@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Posts\CreatePostsRequest;
 use App\Http\Requests\Posts\UpdatePostRequest;
 use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
@@ -33,7 +34,7 @@ class PostsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        return view( 'posts.create' )->with('categories', Category::all());
+        return view( 'posts.create' )->with('categories', Category::all())->with('tags', Tag::all());
     }
 
     /**
@@ -48,7 +49,7 @@ class PostsController extends Controller {
         $image = $request->image->store( 'posts' );
 
         //create the post
-        Post::create( [
+        $post = Post::create( [
             'title'        => $request->title,
             'description'  => $request->description,
             'post_content' => $request->post_content,
@@ -56,6 +57,12 @@ class PostsController extends Controller {
             'image'        => $image,
             'category_id'  => $request->category_id,
         ] );
+
+        //to attach(associate) tags to the post for many to many relationships
+        if($request->tags){
+            $post->tags()->attach($request->tags);
+        }
+
         //flash image
         session()->flash( 'success', 'Post created successfully' );
 
@@ -82,7 +89,7 @@ class PostsController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit( Post $post ) {
-        return view( 'posts.create' )->with( 'post', $post )->with('categories', Category::all());
+        return view( 'posts.create' )->with( 'post', $post )->with('categories', Category::all())->with('tags', Tag::all());
     }
 
     /**
@@ -107,13 +114,18 @@ class PostsController extends Controller {
             $data['image'] = $image;
         }
 
+        //sync for many to many relationships
+        if($request->tags){
+            $post->tags()->sync($request->tags);
+        }
+
         //update attributes
         $post->update( $data );
-        //flash image
+        //flash message
         session()->flash( 'success', 'Post updated successfully' );
 
         //redirect user
-        return view( 'posts.create' )->with( 'post', $post )->with('categories', Category::all());
+        return view( 'posts.create' )->with( 'post', $post )->with('categories', Category::all())->with('tags', Tag::all());
     }
 
     /**

@@ -9,4 +9,14 @@ class Tag extends Model
 {
     use HasFactory;
     protected $fillable = ['name'];
+
+    /**
+     * Relationships Many To Many
+     * Get the tags for the posts
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function posts(){
+        return $this->belongsToMany(Post::class);
+    }
 }

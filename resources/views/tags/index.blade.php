@@ -19,7 +19,7 @@
                     <tr>
                         <th scope="row">{{ $tag->id }}</th>
                         <td>{{ $tag->name }}</td>
-                        <td>0</td>
+                        <td>{{ $tag->posts->count() }}</td>
                         <td class="d-flex">
                             <a class="btn btn-info btn-sm mr-2" href="{{ route('tags.edit', $tag->id) }}"
                                role="button">Edit</a>
