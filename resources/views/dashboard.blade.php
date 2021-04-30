@@ -29,6 +29,11 @@
                        {{ session()->get('success') }}
                     </div>
                 @endif
+                    @if(session()->has('error'))
+                        <div class="alert alert-danger" role="alert">
+                            {{ session()->get('error') }}
+                        </div>
+                    @endif
                 <div class="card">
                     <div class="card-body">
                         <h6 class="text-center">You're logged in!</h6>

@@ -24,8 +24,8 @@
                                              alt="{{ $post->title }}"></th>
                         <td>{{ $post->title }}</td>
                         <td>
-                            <a href="{{ route('categories.edit', $post->category->id) }}" >
-                                {{ $post->category->name }}
+                            <a href="{{ route('categories.edit', $post->category_id) }}" >
+                                {{ isset($post->category->name) ? $post->category->name : ''}}
                             </a>
                         </td>
                         <td class="d-flex">

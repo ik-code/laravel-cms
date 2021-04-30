@@ -9,6 +9,15 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 
 class PostsController extends Controller {
+
+    /**
+     * PostsController constructor.
+     */
+    public function __construct() {
+        //applies this middleware only for methods create and store
+        $this->middleware('verifyCategoriesCount')->only(['create', 'store']);
+    }
+
     /**
      * Display a listing of the resource.
      *

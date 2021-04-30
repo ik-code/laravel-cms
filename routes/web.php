@@ -25,7 +25,10 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::resource('categories', CategoriesController::class);
-Route::resource('posts', PostsController::class);
-Route::get('trashed-posts', [PostsController::class, 'trashed'])->name('trashed-posts.index');
-Route::put('restore-posts/{post}',[PostsController::class, 'restore'])->name('restore-posts');
+
+Route::middleware('auth')->group(function (){
+    Route::resource('categories', CategoriesController::class);
+    Route::resource('posts', PostsController::class);
+    Route::get('trashed-posts', [PostsController::class, 'trashed'])->name('trashed-posts.index');
+    Route::put('restore-posts/{post}',[PostsController::class, 'restore'])->name('restore-posts');
+});
