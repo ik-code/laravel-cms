@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-end">
         <a href="{{ route('posts.create') }}" type="button" class="btn btn-success btn-sm mb-3">Create Post</a>
     </div>
-    <div class="card">
+    <div class="card" style="overflow-x:auto;">
         @if($posts->count() > 0)
             <h5 class="text-center mt-2">{{ $trashed ? 'Trashed Post List' : 'Post List' }}</h5>
             <table class="table">

@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-end">
         <a href="{{ route('categories.create') }}" type="button" class="btn btn-success btn-sm mb-3">Create Category</a>
     </div>
-    <div class="card">
+    <div class="card" style="overflow-x:auto;">
         @if($categories->count() > 0)
             <table class="table">
                 <thead class="thead-light">
@@ -20,8 +20,8 @@
                         <th scope="row">{{ $category->id }}</th>
                         <td>{{ $category->name }}</td>
                         <td>{{ $category->posts->count() }}</td>
-                        <td>
-                            <a class="btn btn-info btn-sm" href="{{ route('categories.edit', $category->id) }}"
+                        <td class="d-flex">
+                            <a class="btn btn-info btn-sm mr-2" href="{{ route('categories.edit', $category->id) }}"
                                role="button">Edit</a>
                             <button class="btn btn-danger btn-sm" onclick="handleDelete({{ $category->id }})">Delete
                             </button>
