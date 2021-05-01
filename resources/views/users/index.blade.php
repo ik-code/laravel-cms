@@ -7,7 +7,7 @@
                 <thead class="thead-light">
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Avatar</th>
+                    <th scope="col">Gravatar</th>
                     <th scope="col">User Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Role</th>
@@ -18,7 +18,7 @@
                 @foreach($users as $user)
                     <tr>
                         <th scope="row">{{ $user->id }}</th>
-                        <th scope="row"><img src="{{ asset( 'storage/'. $user->image ) }}" width="50px"
+                        <th scope="row"><img src="{{ Gravatar::get($user->email) }}" width="40px" height="40px" style="border-radius: 50%"
                                              alt="{{ $user->name }}"></th>
                         <td>{{ $user->name }}</td>
                         <td>
@@ -29,8 +29,10 @@
                         </td>
                         <td class="">
                             @if(!$user->isAdmin())
-                                <a class="btn btn-success btn-sm mr-2" href="{{ route('users.edit', $user->id) }}"
-                                   role="button">Make Admin</a>
+                                <form action="{{ route('users.make-admin', $user->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-success btn-sm mr-2">Make Admin</button>
+                                </form>
                                 @endif
                         </td>
                     </tr>

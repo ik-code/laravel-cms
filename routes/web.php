@@ -38,4 +38,5 @@ Route::middleware('auth')->group(function (){
 
 Route::middleware(['auth', 'admin'])->group(function (){
     Route::resource('users', UsersController::class);
+    Route::post('users/{user}/make-admin', [UsersController::class, 'makeAdmin'])->name('users.make-admin');
 });
