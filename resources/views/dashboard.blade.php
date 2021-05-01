@@ -5,11 +5,17 @@
         </h2>
     </x-slot>
 
-    <div class="container mt-4">
+    <div class="container-fluid mt-4">
 
         <div class="row">
             <div class="col-md-3">
                 <ul class="list-group mb-2">
+                    @if(auth()->user()->isAdmin())
+                        <li class="list-group-item">
+                            <a href="{{ route('users.index') }}">Users({{ count(\App\Models\User::all()) }})</a>
+                        </li>
+                        @endif
+
                     <li class="list-group-item">
                         <a href="{{ route('posts.index') }}">Posts({{ count(\App\Models\Post::all()) }})</a>
                     </li>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\TagsController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +34,8 @@ Route::middleware('auth')->group(function (){
     Route::resource('tags', TagsController::class);
     Route::get('trashed-posts', [PostsController::class, 'trashed'])->name('trashed-posts.index');
     Route::put('restore-posts/{post}',[PostsController::class, 'restore'])->name('restore-posts');
+});
+
+Route::middleware(['auth', 'admin'])->group(function (){
+    Route::resource('users', UsersController::class);
 });
