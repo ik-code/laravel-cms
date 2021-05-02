@@ -32128,7 +32128,7 @@ select {
   left: 20px;
   top: 50%;
   transform: translateY(-50%);
-  background: url('/images/icons/datepicker.svg') center/contain no-repeat;
+  background: url('/img/icons/datepicker.svg') center/contain no-repeat;
   opacity: .6;
 }
 
@@ -32240,6 +32240,177 @@ html .ui-button.ui-state-disabled:active {
 }
 
 /*end datepicker*/
+
+/*sideber start*/
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
+
+.sidebar hr {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-top-style: solid;
+}
+
+.sidebar .nav-sidebar {
+  height: 100%;
+}
+
+@media (max-width: 991.98px) {
+  .sidebar {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+.sidebar-fixed {
+  position: fixed;
+  top: 0;
+  left: -240px;
+  bottom: 0;
+  width: 240px;
+  background-color: #fff;
+  border-right: 1px solid #f1f2f3;
+  z-index: 1000;
+  transition: left 0.3s ease-out;
+}
+
+.sidebar-open .sidebar-fixed {
+  left: 0;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-sticky.stick:not(.is-mobile-wide) {
+  position: fixed;
+  top: 0;
+}
+
+.sidebar-sticky.is-mobile-wide {
+  padding-bottom: 0 !important;
+}
+
+.sidebar-header {
+  text-align: center;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #f1f2f3;
+}
+
+.sidebar-title {
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: .85em;
+  margin-bottom: 1rem;
+}
+
+.sidebar-body {
+  position: relative;
+  padding-right: 20px;
+}
+
+.sidebar-footer {
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 30px;
+  border-top: 1px solid #f1f2f3;
+}
+
+.sidebar-toggler {
+  padding: .25rem .75rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  background: 0 0;
+  border: none;
+  border-radius: .25rem;
+  margin-right: 0.5rem;
+  margin-bottom: -1px;
+}
+
+.backdrop-sidebar {
+  z-index: 999;
+}
+
+@media (min-width: 576px) {
+  .sidebar-fixed.sidebar-expand-sm {
+    position: fixed;
+    left: 0;
+    background-color: #f5f6f7;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.015);
+  }
+
+  .sidebar-fixed.sidebar-expand-sm ~ .main-content {
+    margin-left: 240px;
+  }
+}
+
+@media (min-width: 768px) {
+  .sidebar-fixed.sidebar-expand-md {
+    position: fixed;
+    left: 0;
+    background-color: #f5f6f7;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.015);
+  }
+
+  .sidebar-fixed.sidebar-expand-md ~ .main-content {
+    margin-left: 240px;
+  }
+}
+
+@media (min-width: 992px) {
+  .sidebar-fixed.sidebar-expand-lg {
+    position: fixed;
+    left: 0;
+    background-color: #f5f6f7;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.015);
+  }
+
+  .sidebar-fixed.sidebar-expand-lg ~ .main-content {
+    margin-left: 240px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .sidebar-fixed.sidebar-expand-xl {
+    position: fixed;
+    left: 0;
+    background-color: #f5f6f7;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.015);
+  }
+
+  .sidebar-fixed.sidebar-expand-xl ~ .main-content {
+    margin-left: 240px;
+  }
+}
+
+.sidebar-fixed.sidebar-expand {
+  position: fixed;
+  left: 0;
+  background-color: #f5f6f7;
+  box-shadow: 3px 0 5px rgba(0, 0, 0, 0.015);
+}
+
+.sidebar-fixed.sidebar-expand ~ .main-content {
+  margin-left: 240px;
+}
+
+/*end sidebar*/
+
+/*search form*/
+
+form .input-group-text {
+  height: 38px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left: 0;
+}
+
+/*end search form*/
 
 @media (min-width: 640px) {
   .sm\:container {
