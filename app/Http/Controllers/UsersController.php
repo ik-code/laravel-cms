@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Users\UpdateProfileRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -52,24 +53,30 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        return view('users.edit')->with('user', auth()->user());
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param UpdateProfileRequest $request
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProfileRequest $request)
     {
-        //
+        $user = auth()->user();
+        $user->update([
+           'name' => $request->name,
+           'about' => $request->about
+        ]);
+
+        session()->flash('success', 'Profile updated successfully');
+
+        return redirect()->back();
+
     }
 
     /**

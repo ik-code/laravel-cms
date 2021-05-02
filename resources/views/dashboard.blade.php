@@ -38,7 +38,6 @@
                 @include('partials.errors')
                 <div class="card">
                     <div class="card-body">
-                        <h6 class="text-center">You're logged in!</h6>
                         @yield('content')
                     </div>
                 </div>
