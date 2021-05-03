@@ -24,7 +24,7 @@ class WelcomeController extends Controller {
 
         return view( 'blog.author' )
             ->with('user', User::find($id))
-            ->with('posts', Post::where('user_id', '=', $id)->simplepaginate(2))
+            ->with('posts', Post::where('user_id', '=', $id)->searched()->simplepaginate(2))
             ->with( 'categories', Category::all() )
             ->with( 'tags', Tag::all() )
             ->with('users_have_posts', User::users_have_posts());
@@ -40,7 +40,7 @@ class WelcomeController extends Controller {
         return view('blog.category')
             ->with('category', $category)
             ->with('categories', Category::all())
-            ->with('posts', $category->posts()->simplePaginate(1))
+            ->with('posts', $category->posts()->searched()->simplePaginate(1))
             ->with('tags', Tag::all())
             ->with('users_have_posts', User::users_have_posts());
     }
@@ -55,7 +55,7 @@ class WelcomeController extends Controller {
         return view('blog.tag')
             ->with('tag', $tag)
             ->with('categories', Category::all())
-            ->with('posts', $tag->posts()->simplePaginate(1))
+            ->with('posts', $tag->posts()->searched()->simplePaginate(1))
             ->with('tags', Tag::all())
             ->with('users_have_posts', User::users_have_posts());
     }

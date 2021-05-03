@@ -11,6 +11,9 @@ class Post extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $date = [
+        'published_at'
+    ];
 
     protected $fillable = [
       'title', 'description', 'post_content', 'published_at', 'image', 'category_id', 'user_id'
@@ -64,13 +67,34 @@ class Post extends Model
         return in_array($tag_id, $this->tags->pluck('id')->toArray());
     }
 
+
+    /**
+     * Scope for published()
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
+    public function scopePublished($query){
+
+        return $query->where('published_at','<=', now());
+
+    }
+
+    /**
+     * Scope for searched()
+     *
+     * @param $query
+     *
+     * @return mixed
+     */
     public function scopeSearched($query){
         $search = request()->query('search');
 
         if(!$search){
-         return $query;
+         return $query->published();
         }
 
-        return $query->where('title', 'LIKE', "%{$search}%");
+        return $query->published()->where('title', 'LIKE', "%{$search}%");
     }
 }
