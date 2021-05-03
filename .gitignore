@@ -11,3 +11,7 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+/.idea
+/theme
+/theme2
+/resources/views/welcome2.blade.php

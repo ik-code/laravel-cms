@@ -1,0 +1,307 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/*start datepicker*/
+.post__datepicker .datepicker {
+    box-shadow: none;
+    background-color: transparent;
+    text-align: right;
+    padding: 0;
+    color: #5b5b5f;
+    height: auto;
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration: underline;
+    cursor: pointer;
+    z-index: 100 !important;
+
+}
+
+.post__datepicker .datepicker:focus {
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.post__datepicker {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 33px;
+    padding: 0 20px 0 50px;
+    height: 50px;
+    box-shadow: inset 0 0 0 1px rgba(194, 192, 193, 0.6);
+}
+
+.post__datepicker:before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: url('/img/icons/datepicker.svg') center/contain no-repeat;
+    opacity: .6;
+}
+
+.post__datepicker label {
+    width: 140px;
+    height: auto;
+    max-height: 100%;
+    font-size: 1rem;
+    color: #000000;
+    overflow: visible;
+    padding: 0;
+    opacity: .7;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* datepicker dropdown*/
+
+.ui-datepicker.ui-widget.ui-widget-content {
+    width: 255px;
+    padding: 0;
+    background-color: white;
+    font-size: 16px;
+    font-family: Saira Semi Condensed, sans-serif;
+    color: #1B1B1B;
+    border-radius: 0;
+    line-height: 1.9;
+}
+
+.ui-datepicker .ui-datepicker-header {
+    border-radius: 0;
+    background-color: #4bbf73;
+}
+
+.ui-datepicker,
+.ui-datepicker .ui-state-default,
+.ui-datepicker .ui-state-default,
+.ui-button,
+html .ui-button.ui-state-disabled:hover,
+html .ui-button.ui-state-disabled:active {
+    border: none;
+    background-color: transparent;
+    color: rgba(27, 27, 27, 0.5);
+    text-align: center;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.ui-datepicker .ui-state-default:hover {
+    font-weight: normal;
+    box-shadow: 0 0 2px #ffd401;
+}
+
+.ui-datepicker .ui-state-default:focus {
+    outline: none
+}
+
+.ui-datepicker .ui-state-active {
+    background-color: #FFD401;
+    border: none;
+    font-weight: normal;
+}
+
+.ui-datepicker-calendar span {
+    color: rgba(27, 27, 27, 0.5);
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.ui-datepicker .ui-state-hover {
+    background-color: transparent;
+    border: none;
+}
+
+.ui-datepicker .ui-datepicker-header .ui-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    margin: 0;
+    border: 1px solid rgb(27, 27, 27);
+    border-left: none;
+    border-top: none;
+    border-radius: 0;
+    background: none;
+    width: 10px;
+    height: 10px;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.ui-datepicker .ui-datepicker-prev .ui-icon {
+    transform: translate(-50%, -50%) rotate(135deg);
+}
+
+@media screen and (min-width: 768px) {
+    .booking-final__form-header {
+        background-color: #F0EEEB;
+        width: 100%;
+        margin: 0;
+        padding: 14px 9rem 16px;
+        font-size: 18px;
+        line-height: 28px;
+        color: #707070;
+        max-width: none;
+        position: absolute;
+        left: 0;
+        bottom: 0
+    }
+}
+/*end datepicker*/
+
+/*sideber start*/
+.sidebar {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    padding-top: 7rem;
+    padding-bottom: 7rem; }
+.sidebar hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-top-style: solid; }
+.sidebar .nav-sidebar {
+    height: 100%; }
+@media (max-width: 991.98px) {
+    .sidebar {
+        padding-top: 5rem;
+        padding-bottom: 5rem; } }
+
+.sidebar-fixed {
+    position: fixed;
+    top: 0;
+    left: -240px;
+    bottom: 0;
+    width: 240px;
+    background-color: #fff;
+    border-right: 1px solid #f1f2f3;
+    z-index: 1000;
+    -webkit-transition: left 0.3s ease-out;
+    transition: left 0.3s ease-out; }
+.sidebar-open .sidebar-fixed {
+    left: 0;
+    -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05); }
+
+.sidebar-sticky.stick:not(.is-mobile-wide) {
+    position: fixed;
+    top: 0; }
+
+.sidebar-sticky.is-mobile-wide {
+    padding-bottom: 0 !important; }
+
+.sidebar-header {
+    text-align: center;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #f1f2f3; }
+
+.sidebar-title {
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: .85em;
+    margin-bottom: 1rem; }
+
+.sidebar-body {
+    position: relative;
+    padding-right: 20px; }
+
+.sidebar-footer {
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 30px;
+    border-top: 1px solid #f1f2f3; }
+
+.sidebar-toggler {
+    padding: .25rem .75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+    background: 0 0;
+    border: none;
+    border-radius: .25rem;
+    margin-right: 0.5rem;
+    margin-bottom: -1px; }
+
+.backdrop-sidebar {
+    z-index: 999; }
+
+@media (min-width: 576px) {
+    .sidebar-fixed.sidebar-expand-sm {
+        position: fixed;
+        left: 0;
+        background-color: #f5f6f7;
+        -webkit-box-shadow: 3px 0 5px rgba(0, 0, 0, 0.015);
+        box-shadow: 3px 0 5px rgba(0, 0, 0, 0.015); }
+    .sidebar-fixed.sidebar-expand-sm ~ .main-content {
+        margin-left: 240px; } }
+
+@media (min-width: 768px) {
+    .sidebar-fixed.sidebar-expand-md {
+        position: fixed;
+        left: 0;
+        background-color: #f5f6f7;
+        -webkit-box-shadow: 3px 0 5px rgba(0, 0, 0, 0.015);
+        box-shadow: 3px 0 5px rgba(0, 0, 0, 0.015); }
+    .sidebar-fixed.sidebar-expand-md ~ .main-content {
+        margin-left: 240px; } }
+
+@media (min-width: 992px) {
+    .sidebar-fixed.sidebar-expand-lg {
+        position: fixed;
+        left: 0;
+        background-color: #f5f6f7;
+        -webkit-box-shadow: 3px 0 5px rgba(0, 0, 0, 0.015);
+        box-shadow: 3px 0 5px rgba(0, 0, 0, 0.015); }
+    .sidebar-fixed.sidebar-expand-lg ~ .main-content {
+        margin-left: 240px; } }
+
+@media (min-width: 1200px) {
+    .sidebar-fixed.sidebar-expand-xl {
+        position: fixed;
+        left: 0;
+        background-color: #f5f6f7;
+        -webkit-box-shadow: 3px 0 5px rgba(0, 0, 0, 0.015);
+        box-shadow: 3px 0 5px rgba(0, 0, 0, 0.015); }
+    .sidebar-fixed.sidebar-expand-xl ~ .main-content {
+        margin-left: 240px; } }
+
+.sidebar-fixed.sidebar-expand {
+    position: fixed;
+    left: 0;
+    background-color: #f5f6f7;
+    -webkit-box-shadow: 3px 0 5px rgba(0, 0, 0, 0.015);
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.015); }
+.sidebar-fixed.sidebar-expand ~ .main-content {
+    margin-left: 240px; }
+/*end sidebar*/
+
+/*search form*/
+form .input-group-text {
+    height: 38px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: 0;
+}
+/*end search form*/
+form input,
+body p,
+body a{
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+form.input-group input,
+form.input-group span,
+a.badge {
+    border-radius: 0;
+}
+a.badge {
+    padding: 0.25em 0.5em;
+}
