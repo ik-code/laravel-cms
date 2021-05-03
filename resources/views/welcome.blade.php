@@ -33,7 +33,7 @@
                             <h5 class="post-subtitle">{{ $post->description }}</h5>
                         </a>
                         <h6 class="post-subtitle">
-                            Category: {{ $post->category->name }},
+                            Category: {{ $post->category->name }} &nbsp;&nbsp;
                             Posted by: {{ substr($post->published_at, 0, -3) }}
                         </h6>
                     </div>
@@ -41,7 +41,10 @@
             @endforeach
 
             <!-- Pager-->
-                <div class="clearfix"><a class="btn btn-primary float-right" href="#!">Older Posts →</a></div>
+                <div class="clearfix">
+{{--                    <a class="btn btn-primary float-right" href="#!">Older Posts →</a>--}}
+                    {{ $posts->links() }}
+                </div>
             </div>
             <div class="col-lg-4 col-md-4 mx-auto">
                 <div class="sidebar px-4 py-md-0">
