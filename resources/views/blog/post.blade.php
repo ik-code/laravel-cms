@@ -13,11 +13,11 @@
                         <h1>{{ $post->title }}</h1>
                         <span class="subheading">{{ $post->description }}</span>
                         <p class="lead">
-                            Category: <a class="text-white" href="#">{{ $post->category->name }}</a>
-                           <br> Posted by: {{ substr($post->published_at, 0, -3) }}
+                            Category: <a href="{{ route('blog.category', $post->category->id) }}" class="text-white lead"> {{ $post->category->name }}</a>
+                            <br> Posted by: {{ substr($post->published_at, 0, -3) }}
                             </p>
                         <p class="lead d-flex align-items-center" >Author:<span class="d-flex"><img class="mx-3" src="{{ Gravatar::get($post->user->email) }}" width="40px" style="border-radius: 50%"
-                                                         alt="{{ $post->user->name }}"> <span class="align-self-center">{{ $post->user->name }} </span></span></p>
+                                                         alt="{{ $post->user->name }}"> <a class="text-white align-self-center" href="{{ route( 'blog.author' , $post->user->id ) }}">{{ $post->user->name }}</a></span></p>
                     </div>
                 </div>
             </div>
@@ -33,9 +33,9 @@
                    {!! $post->post_content !!}
                     <div class="gap-multiline-items-1">
                         <p class="lead">Tags:
-                        @foreach($post->tags()->get() as $tag)
-                            <a class="badge badge-secondary ml-2 px-3 py-2" href="#">{{ $tag->name }}</a>
-                        @endforeach
+                            @foreach($post->tags()->get() as $tag)
+                                <a class="badge badge-secondary px-3 py-2" href="{{ route('blog.tag', $tag->id) }}">{{ $tag->name }}</a>
+                            @endforeach
                         </p>
                     </div>
                     <div id="disqus_thread"></div>

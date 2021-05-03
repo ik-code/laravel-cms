@@ -24,8 +24,8 @@ class PostTableSeeder extends Seeder
            'password' => Hash::make('password'),
         ]);
         $user2 = User::create([
-            'name' => 'Jane Doe',
-            'email' => 'jane.doe@example.com',
+            'name' => 'Emeli Mayers',
+            'email' => 'emeli.mayers@example.com',
             'password' => Hash::make('password'),
         ]);
 

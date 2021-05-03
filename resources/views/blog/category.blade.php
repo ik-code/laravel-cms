@@ -1,7 +1,7 @@
 @extends('layouts.blog')
 @section('title')
-    Clean Blog
-    @endsection
+    Category: {{ $category->name }}
+@endsection
 @section('header')
     <!-- Page Header-->
     <header class="masthead" style="background-image: url('/img/home-bg.jpg')">
@@ -10,8 +10,7 @@
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="site-heading">
-                        <h1>Clean Blog</h1>
-                        <span class="subheading">A Simple Blog Theme</span>
+                        <h1>Category: {{ $category->name }}</h1>
                     </div>
                 </div>
             </div>
@@ -35,14 +34,14 @@
                         <h6 class="post-subtitle">
                             Category:<a href="{{ route('blog.category', $post->category->id) }}" class="lead"> {{ $post->category->name }}</a> &nbsp;&nbsp;
                             Tags:
-                            @foreach($post->tags()->get() as $tag)
+                            @foreach($tags as $tag)
                                 <a class="badge badge-secondary px-3 py-2" href="{{ route('blog.tag', $tag->id) }}">{{ $tag->name }}</a>
                             @endforeach
                             Posted by: {{ substr($post->published_at, 0, -3) }}
                         </h6>
                     </div>
                     <hr/>
-                    @empty
+                @empty
                     <p class="lead text-center">
                         No results found for Search: <strong>{{ request()->query('search') }}</strong>
                     </p>
@@ -54,9 +53,9 @@
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 mx-auto">
-              @include('partials.sidebar')
+                @include('partials.sidebar')
             </div>
         </div>
     </div>
     <hr/>
-    @endsection
+@endsection

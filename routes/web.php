@@ -20,7 +20,10 @@ use App\Http\Controllers\WelcomeController;
 */
 
 Route::get('/', [WelcomeController::class, 'index'])->name('website');
-Route::get('/blog/{post}', [BlogSinglePostController::class, 'show'])->name('blog.post');
+Route::get('/blog/authors/{author}', [WelcomeController::class, 'author'])->name('blog.author');
+Route::get('/blog/post/{post}', [BlogSinglePostController::class, 'show'])->name('blog.post');
+Route::get('/blog/categories/{category}', [BlogSinglePostController::class, 'category'])->name('blog.category');
+Route::get('/blog/tags/{tag}', [BlogSinglePostController::class, 'tag'])->name('blog.tag');
 
 Route::get('/dashboard', function () {
     return view('dashboard')->with('dashboard', true);
