@@ -56,6 +56,7 @@ class PostsController extends Controller {
             'published_at' => $request->published_at,
             'image'        => $image,
             'category_id'  => $request->category_id,
+            'user_id'      => auth()->user()->id,
         ] );
 
         //to attach(associate) tags to the post for many to many relationships

@@ -50,4 +50,14 @@ class User extends Authenticatable
     public function isAdmin(){
         return $this->role === 'admin';
     }
+
+    /**
+     * Relationships One To Many
+     * Get the posts for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
 }

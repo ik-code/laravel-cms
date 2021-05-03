@@ -13,7 +13,7 @@ class Post extends Model
     use SoftDeletes;
 
     protected $fillable = [
-      'title', 'description', 'post_content', 'published_at', 'image', 'category_id'
+      'title', 'description', 'post_content', 'published_at', 'image', 'category_id', 'user_id'
     ];
 
     /**
@@ -41,6 +41,16 @@ class Post extends Model
      */
     public function tags() {
         return $this->belongsToMany( Tag::class );
+    }
+
+    /**
+     * Relationships One To Many
+     * Get the posts for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
     /**

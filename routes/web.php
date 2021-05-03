@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\BlogSinglePostController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\WelcomeController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\WelcomeController;
 */
 
 Route::get('/', [WelcomeController::class, 'index'])->name('website');
+Route::get('/blog/{post}', [BlogSinglePostController::class, 'show'])->name('blog.post');
 
 Route::get('/dashboard', function () {
     return view('dashboard')->with('dashboard', true);
