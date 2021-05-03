@@ -6,8 +6,6 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class WelcomeController extends Controller {
     /**
@@ -15,32 +13,51 @@ class WelcomeController extends Controller {
      */
     public function index() {
 
-        $search = request()->query('search');
-
-        if($search){
-            $posts = Post::where('title', 'LIKE', "%{$search}%")->simplepaginate(2);
-        }else{
-            $posts = Post::simplepaginate( 2 );
-        }
-
-        $users = new User();
-
         return view( 'welcome' )
-            ->with( 'posts',  $posts )
+            ->with( 'posts',  Post::searched()->simplePaginate(2) )
             ->with( 'categories', Category::all() )
             ->with( 'tags', Tag::all() )
-            ->with('users_have_posts', $users->users_have_posts());
+            ->with('users_have_posts', User::users_have_posts());
     }
 
     public function author($id){
 
-        $posts = Post::where('user_id', '=', $id)->simplepaginate(2);
-        $users = new User();
         return view( 'blog.author' )
             ->with('user', User::find($id))
-            ->with('posts', $posts)
+            ->with('posts', Post::where('user_id', '=', $id)->simplepaginate(2))
             ->with( 'categories', Category::all() )
             ->with( 'tags', Tag::all() )
-            ->with('users_have_posts', $users->users_have_posts());
+            ->with('users_have_posts', User::users_have_posts());
     }
+
+    /**
+     * @param Category $category
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function category(Category $category){
+
+        return view('blog.category')
+            ->with('category', $category)
+            ->with('categories', Category::all())
+            ->with('posts', $category->posts()->simplePaginate(1))
+            ->with('tags', Tag::all())
+            ->with('users_have_posts', User::users_have_posts());
+    }
+
+    /**
+     * @param Tag $tag
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function tag(Tag $tag){
+
+        return view('blog.tag')
+            ->with('tag', $tag)
+            ->with('categories', Category::all())
+            ->with('posts', $tag->posts()->simplePaginate(1))
+            ->with('tags', Tag::all())
+            ->with('users_have_posts', User::users_have_posts());
+    }
+
 }

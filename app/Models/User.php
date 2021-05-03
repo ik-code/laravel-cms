@@ -67,7 +67,7 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Support\Collection
      */
-    public function users_have_posts(){
+    public function scopeUsers_have_posts(){
         return DB::table('users')->whereExists(function ($query) {
             $query->select('user_id')
                   ->from('posts')

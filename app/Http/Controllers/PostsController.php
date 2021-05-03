@@ -6,7 +6,6 @@ use App\Http\Requests\Posts\CreatePostsRequest;
 use App\Http\Requests\Posts\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\Tag;
-use Illuminate\Http\Request;
 use App\Models\Post;
 
 class PostsController extends Controller {
