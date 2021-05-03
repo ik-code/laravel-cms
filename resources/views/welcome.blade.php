@@ -42,7 +42,6 @@
 
             <!-- Pager-->
                 <div class="clearfix">
-{{--                    <a class="btn btn-primary float-right" href="#!">Older Posts →</a>--}}
                     {{ $posts->links() }}
                 </div>
             </div>
