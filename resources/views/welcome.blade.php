@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-8 mx-auto">
 
-                @foreach($posts as $post)
+                @forelse($posts as $post)
                     <div class="post-preview">
                         <a href="{{ route('blog.post', $post->id) }}">
                             <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}">
@@ -38,21 +38,25 @@
                         </h6>
                     </div>
                     <hr/>
-            @endforeach
+                    @empty
+                    <p class="lead text-center">
+                        No results found for Search: <strong>{{ request()->query('search') }}</strong>
+                    </p>
+            @endforelse
 
             <!-- Pager-->
                 <div class="clearfix">
-                    {{ $posts->links() }}
+                    {{ $posts->appends(['search' => request()->query('search')])->links() }}
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 mx-auto">
                 <div class="sidebar px-4 py-md-0">
 
                     <h6 class="post-title uppercase">Search</h6>
-                    <form class="input-group" target="#" method="GET">
-                        <input type="text" class="form-control" name="s" placeholder="Search">
+                    <form class="input-group" action="{{ route('website') }}"  method="GET">
+                        <input type="text" class="form-control" name="search" placeholder="Search" value="{{ request()->query('search') }}">
                         <div class="input-group-addon">
-                            <span class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <button type="submit" class="input-group-text"><i class="fa fa-search" aria-hidden="true"></i></button>
                         </div>
                     </form>
 
