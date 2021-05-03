@@ -123,10 +123,10 @@
                     var m = d.getMinutes();
                     m = (m < 10) ? ("0" + m) : m ;
 
-                    var s = d.getSeconds();
-                    s = (s < 10) ? ("0" + s) : s ;
+                    // var s = d.getSeconds();
+                    // s = (s < 10) ? ("0" + s) : s ;
 
-                    datetext = datetext + " " + h + ":" + m + ":" + s;
+                    datetext = datetext + " " + h + ":" + m;
                     $('#published_at').val(datetext);
                 },
             });

@@ -292,3 +292,16 @@ form .input-group-text {
     border-left: 0;
 }
 /*end search form*/
+form input,
+body p,
+body a{
+    font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+form.input-group input,
+form.input-group span,
+a.badge {
+    border-radius: 0;
+}
+a.badge {
+    padding: 0.25em 0.5em;
+}

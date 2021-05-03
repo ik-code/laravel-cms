@@ -38,6 +38,9 @@
                 @include('partials.errors')
                 <div class="card">
                     <div class="card-body">
+                        @if(isset($dashboard) && $dashboard===true )
+                        <h5 class="text-center mt-2" >You are logged in!</h5>
+                        @endif
                         @yield('content')
                     </div>
                 </div>

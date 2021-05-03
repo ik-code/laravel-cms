@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +18,10 @@ use App\Http\Controllers\UsersController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [WelcomeController::class, 'index'])->name('website');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard')->with('dashboard', true);
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
